@@ -14,11 +14,13 @@
 To launch the app, you can run it locally or use docker.
 
 ### Run with docker
-
+Go to [the webapp](https://github.com/hisarandre/Mediscreen-webapp) to launch the app with docker
 
 ### Run local
 
-Launch the database :
+0. First, clone the Patient repository
+
+   Launch the database :
 1. Make sure that you have MongoDB installed.
 2. Ensure that the MongoDB server is running.
 3. Import the data from the file in resources/mongodb_data.ndjson
