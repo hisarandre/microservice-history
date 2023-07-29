@@ -18,7 +18,7 @@ Go to [the webapp](https://github.com/hisarandre/Mediscreen-webapp) to launch th
 
 ### Run local
 
-0. First, clone the Patient repository
+0. First, clone the History repository
 
    Launch the database :
 1. Make sure that you have MongoDB installed.
