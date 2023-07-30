@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Service class for managing patient history information.
+ */
 @Service
 public class HistoryService { ;
 
@@ -22,6 +25,13 @@ public class HistoryService { ;
     @Autowired
     HistoryRepository historyRepository;
 
+    /**
+     * Retrieves a patient history by its ID.
+     *
+     * @param id The ID of the history to retrieve.
+     * @return The patient history as a HistoryDTO object.
+     * @throws HistoryNotFoundException if the history with the given ID is not found.
+     */
     public HistoryDTO getHistoryById(String id) {
         Optional<History> history = historyRepository.findById(id);
 
@@ -33,6 +43,12 @@ public class HistoryService { ;
         throw new HistoryNotFoundException("History not found with ID: " + id);
     }
 
+    /**
+     * Retrieves all patient histories associated with a given patient ID.
+     *
+     * @param id The ID of the patient.
+     * @return A list of patient histories as HistoryDTO objects.
+     */
     public List<HistoryDTO> getHistoryByPatientId(Integer id) {
         List<History> historyList = historyRepository.findByPatId(id);
 
@@ -46,7 +62,12 @@ public class HistoryService { ;
         return new ArrayList<>();
     }
 
-
+    /**
+     * Retrieves all patient histories.
+     *
+     * @return A list of all patient histories as HistoryDTO objects.
+     * @throws HistoryNotFoundException if no patient histories are found.
+     */
     public List<HistoryDTO> getAllHistories() {
         try {
             List<History> histories = historyRepository.findAll();
@@ -56,6 +77,12 @@ public class HistoryService { ;
         }
     }
 
+    /**
+     * Adds a new patient history.
+     *
+     * @param historyDTO The HistoryDTO object containing the information of the new history.
+     * @return true if the history is added successfully, false otherwise.
+     */
     public boolean addHistory(HistoryDTO historyDTO) {
         try {
             History history = mapper.historyDTOtoEntity(historyDTO);
@@ -68,6 +95,14 @@ public class HistoryService { ;
         }
     }
 
+    /**
+     * Updates an existing patient history with the given ID.
+     *
+     * @param id         The ID of the history to update.
+     * @param historyDTO The updated HistoryDTO object.
+     * @return true if the history is updated successfully, false otherwise.
+     * @throws HistoryNotFoundException if the history with the given ID is not found.
+     */
     public boolean updateHistory(String id, HistoryDTO historyDTO) {
         Optional<History> optionalHistory = historyRepository.findById(id);
 
@@ -82,6 +117,13 @@ public class HistoryService { ;
         throw new HistoryNotFoundException("Patient history not found with ID: " + id);
     }
 
+    /**
+     * Deletes a patient history by its ID.
+     *
+     * @param id The ID of the history to delete.
+     * @return true if the history is deleted successfully, false otherwise.
+     * @throws HistoryNotFoundException if the history with the given ID is not found.
+     */
     public boolean deleteHistory(String id) {
         Optional<History> history = historyRepository.findById(id);
 

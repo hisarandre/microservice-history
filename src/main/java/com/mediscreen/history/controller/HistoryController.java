@@ -27,6 +27,12 @@ public class HistoryController {
 
     private static Logger logger = LoggerFactory.getLogger(HistoryController.class);
 
+    /**
+     * Retrieves a patient's history by its ID.
+     *
+     * @param id The ID of the history to retrieve.
+     * @return The HistoryDTO representing the patient's history.
+     */
     @Operation(summary = "Get a patient history by its id")
     @GetMapping(value = "/patHistory/{id}")
     public HistoryDTO getHistoryById(@PathVariable String id) {
@@ -34,6 +40,12 @@ public class HistoryController {
         return historyService.getHistoryById(id);
     }
 
+    /**
+     * Retrieves a patient's history by the patient ID.
+     *
+     * @param id The ID of the patient for whom the history is requested.
+     * @return A list of HistoryDTO representing the patient's history.
+     */
     @Operation(summary = "Get a patient history by patient id")
     @GetMapping(value = "/patHistory")
     public List<HistoryDTO> getHistoryByPatientId(@RequestParam("patId") Integer id) {
@@ -41,6 +53,11 @@ public class HistoryController {
         return historyService.getHistoryByPatientId(id);
     }
 
+    /**
+     * Retrieves all patient histories.
+     *
+     * @return A list of HistoryDTO representing all patient histories.
+     */
     @Operation(summary = "Get all patient histories ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found all histories", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = HistoryDTO.class)) }),
@@ -52,6 +69,12 @@ public class HistoryController {
         return historyService.getAllHistories();
     }
 
+    /**
+     * Saves a patient history.
+     *
+     * @param historyDTO The HistoryDTO representing the patient history to be saved.
+     * @return A ResponseEntity with status indicating the result of the operation.
+     */
     @Operation(summary = "Save a patient history")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Patient History added successfully", content = { @Content(mediaType = "application/json", schema = @Schema(implementation = HistoryDTO.class)) }),
@@ -71,6 +94,13 @@ public class HistoryController {
         }
     }
 
+    /**
+     * Updates a patient history.
+     *
+     * @param id The ID of the history to be updated.
+     * @param historyDTO The HistoryDTO representing the updated patient history.
+     * @return A ResponseEntity with status indicating the result of the operation.
+     */
     @Operation(summary = "Update a patient history")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Patient history updated successfully", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = HistoryDTO.class))}),
@@ -91,6 +121,12 @@ public class HistoryController {
         }
     }
 
+    /**
+     * Deletes a patient history by its ID.
+     *
+     * @param id The ID of the history to be deleted.
+     * @return A ResponseEntity with status indicating the result of the operation.
+     */
     @Operation(summary = "Delete a patient history by its id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Patient history deleted successfully"),
